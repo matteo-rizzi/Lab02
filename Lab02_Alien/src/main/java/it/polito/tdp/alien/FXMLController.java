@@ -37,8 +37,15 @@ public class FXMLController {
 
 	@FXML
 	void doTranslate(ActionEvent event) {
-		String inserita = txtInserisci.getText().toLowerCase();
+		
 		txtInserisci.clear();
+		
+		String inserita = txtInserisci.getText().toLowerCase();
+		if (inserita.equals("")) {
+			txtRisultato.appendText("Non hai inserito alcuna parola!\n");
+			return;
+		}
+		
 		if (inserita.contains(" ")) {
 			String alienWord = inserita.substring(0, inserita.indexOf(" "));
 			String translation = inserita.substring(inserita.indexOf(" ") + 1);
@@ -51,7 +58,7 @@ public class FXMLController {
 		else if (!inserita.contains(" ")){
 			String traduzione = this.ad.translateWord(inserita);
 			if (traduzione == null) {
-				txtRisultato.appendText("La parola inserita non è presente nel dizionario o non hai inserito alcuna parola!\n");
+				txtRisultato.appendText("La parola inserita non è presente nel dizionario!\n");
 				return;
 			}
 			txtRisultato.appendText("La traduzione della parola '" + inserita + "' è: " + traduzione + "\n");
