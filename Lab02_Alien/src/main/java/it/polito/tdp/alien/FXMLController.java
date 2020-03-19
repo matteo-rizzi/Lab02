@@ -2,6 +2,7 @@ package it.polito.tdp.alien;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,35 +38,33 @@ public class FXMLController {
 
 	@FXML
 	void doTranslate(ActionEvent event) {
-		
-		txtInserisci.clear();
-		
+
 		String inserita = txtInserisci.getText().toLowerCase();
+
 		if (inserita.equals("")) {
 			txtRisultato.appendText("Non hai inserito alcuna parola!\n");
 			return;
 		}
-		
+
 		if (inserita.contains(" ")) {
 			String alienWord = inserita.substring(0, inserita.indexOf(" "));
 			String translation = inserita.substring(inserita.indexOf(" ") + 1);
-			if(!parolaConsentita(alienWord) || !parolaConsentita(translation)) {
+			if (!parolaConsentita(alienWord) || !parolaConsentita(translation)) {
 				txtRisultato.appendText("Le parole inserite possono contenere solo lettere!\n");
 				return;
 			}
 			this.ad.addWord(alienWord, translation);
-		}
-		else if (!inserita.contains(" ")){
+		} else if (!inserita.contains(" ")) {
 			String traduzione = this.ad.translateWord(inserita);
 			if (traduzione == null) {
 				txtRisultato.appendText("La parola inserita non è presente nel dizionario!\n");
 				return;
 			}
-			txtRisultato.appendText("La traduzione della parola '" + inserita + "' è: " + traduzione + "\n");
+			txtRisultato.appendText("La/e traduzione/i della parola '" + inserita + "' è/sono: " + traduzione + "\n");
 		}
 
 	}
-	
+
 	private boolean parolaConsentita(String p) {
 		boolean b = true;
 		if (p.equals(""))

@@ -46,9 +46,9 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Button>
-                  <ImageView fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@\Users\Rizzi\Desktop\Politecnico di Torino\MATERIALE LEZIONI\Tecniche di programmazione\Elaborati Scene Builder\alieno_lab02.png" />
+                        <Image url="@../alieno_lab02.png" />
                      </image>
                   </ImageView>
                </children>
