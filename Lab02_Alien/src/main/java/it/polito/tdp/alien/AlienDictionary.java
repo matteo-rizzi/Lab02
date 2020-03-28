@@ -23,9 +23,25 @@ public class AlienDictionary {
 	}
 
 	public String translateWord(String alienWord) {
-		WordEnhanced wTemp = cercaAlienWord(alienWord);
-		if (wTemp != null)
-			return wTemp.toString();
+		String s = "";
+		List<WordEnhanced> wc = new ArrayList<>();
+		if (alienWord.contains("?")) {
+			for (WordEnhanced we : dizionario) {
+				if (we.wildcard(alienWord)) {
+					wc.add(we);
+				}
+			}
+			for (WordEnhanced we : wc) {
+				s += "La/e traduzione/i della parola '" + we.getAlienWord() + "' è/sono: " + we.toString() + "\n";
+			}
+			return s;
+		} else if (!alienWord.contains("?")){
+			WordEnhanced wTemp = cercaAlienWord(alienWord);
+			if (wTemp != null)
+				return "La/e traduzione/i della parola '" + wTemp.getAlienWord() + "' è/sono: " + wTemp.toString() + "\n";
+			else
+				return null;
+		}
 		else
 			return null;
 	}
@@ -33,7 +49,7 @@ public class AlienDictionary {
 	public WordEnhanced cercaAlienWord(String a) {
 		WordEnhanced trovato = null;
 		for (WordEnhanced w : dizionario)
-			if (w!= null && w.getAlienWord().compareTo(a) == 0)
+			if (w != null && w.getAlienWord().compareTo(a) == 0)
 				trovato = w;
 		return trovato;
 	}

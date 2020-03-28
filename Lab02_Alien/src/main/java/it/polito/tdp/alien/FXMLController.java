@@ -38,7 +38,7 @@ public class FXMLController {
 
 	@FXML
 	void doTranslate(ActionEvent event) {
-
+		
 		String inserita = txtInserisci.getText().toLowerCase();
 
 		if (inserita.equals("")) {
@@ -60,7 +60,7 @@ public class FXMLController {
 				txtRisultato.appendText("La parola inserita non è presente nel dizionario!\n");
 				return;
 			}
-			txtRisultato.appendText("La/e traduzione/i della parola '" + inserita + "' è/sono: " + traduzione + "\n");
+			txtRisultato.appendText(traduzione);
 		}
 
 	}

@@ -12,10 +12,16 @@ public class WordEnhanced {
 		this.translations = new LinkedList<String>();
 	}
 
+	public WordEnhanced(String alienWord, List<String> translations) {
+		this.alienWord = alienWord;
+		this.translations = translations;
+	}
+
 	public void addTranslation(String translation) {
 		boolean presente = false;
 		for (String t : translations) {
-			if (t != null && t.compareTo(translation) == 0) // La traduzione è già presente. Non bisogna aggiungerla nuovamente
+			if (t != null && t.compareTo(translation) == 0) // La traduzione è già presente. Non bisogna aggiungerla
+															// nuovamente
 				presente = true;
 		}
 		if (presente == false)
@@ -26,8 +32,23 @@ public class WordEnhanced {
 		return alienWord;
 	}
 
-	public List<String> getTranslations() {
-		return translations;
+	public boolean wildcard(String s) {
+		int puntiInterrogativi = 0;
+		if (this.alienWord.length() != s.length()) {
+			return false;
+		} else {
+			for (int i = 0; i < s.length(); i++) {
+				if (s.charAt(i) == '?')
+					puntiInterrogativi++;
+				else if (s.charAt(i) != this.alienWord.charAt(i)) {
+					return false;
+				}
+			}
+		}
+		if (puntiInterrogativi == 1) {
+			return true;
+		} else
+			return false;
 	}
 
 	@Override
